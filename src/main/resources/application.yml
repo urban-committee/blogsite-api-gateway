@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: API-GATEWAY-APP
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: BLOG-SERVICE
+          uri: lb://BLOG-SERVICE
+          predicates:
+            - Path=/api/v1.0/blogsite/blogs/**
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/v1.0/blogsite/user/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+  instance:
+    hostname: localhost
+
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: DEBUG
