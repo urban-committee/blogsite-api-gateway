@@ -13,8 +13,8 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id: BLOG-SERVICE
-          uri: lb://BLOG-SERVICE
+        - id: blogsite-blog-service
+          uri: lb://blogsite-blog-service
           predicates:
             - Path=/api/v1.0/blogsite/blogs/**
         - id: blogsite-user-service
