@@ -1,0 +1,167 @@
+##version: '3.8'
+##
+##services:
+##  blogsite-api-gateway:
+##    image: blogsite-api-gateway:latest
+##    build:
+##      context: ../../../ # Adjust this path to where your root project directory is
+##      dockerfile: Dockerfile
+##    ports:
+##      - "8080:8080"
+##    environment:
+##      - EUREKA_CLIENT_SERVICE_DEFAULT_ZONE=http://blogsite-service-registry:8081/eureka/
+##    networks:
+##      - blogsite-network
+##
+##networks:
+##  blogsite-network:
+##    driver: bridge
+#
+##version: '3.8'
+##
+##services:
+##  blogsite-service-registry:
+##    image: blogsite-service-registry:latest
+##    build:
+##      context: ../../../ # Adjust this path to where your root project directory is
+##      dockerfile: Dockerfile
+##    ports:
+##      - "8081:8081"
+##    networks:
+##      - blogsite-network
+##
+##  blogsite-api-gateway:
+##    image: blogsite-api-gateway:latest
+##    build:
+##      context: ../../../ # Adjust this path to where your root project directory is
+##      dockerfile: Dockerfile
+##    ports:
+##      - "8080:8080"
+##    environment:
+##      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://blogsite-service-registry:8081/eureka/
+##    networks:
+##      - blogsite-network
+##
+##networks:
+##  blogsite-network:
+##    driver: bridge
+#
+#
+##version: "3"
+###volumes:
+###  prometheus_data: {}
+#
+#services:
+#  blogsite-service-registry:
+#    image: blogsite-service-registry:latest
+#    build:
+#      context: ../../../ # Adjust this path to where your root project directory is
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8081:8081"
+#    networks:
+#      - data-emission-network
+#
+##    techefx-product-stock-service:
+##      image: techefx-product-stock-service
+##      environment:
+##        - JAVA_OPTS=
+##          -DEUREKA_SERVER=http://techefx-eureka-namng-service:8761/eureka
+##          -DZIPKIN_SERVER=http://zipkin:9411/
+##      ports:
+##        - "8800:8800"
+##      #    links:
+##      #      - zipkin
+##      depends_on:
+##        - techefx-eureka-namng-service
+##      #      - zipkin
+##      networks:
+##        - test-network
+#
+#
+##    techefx-product-enquiry-service:
+##      image: techefx-product-enquiry-service
+##      environment:
+##        - JAVA_OPTS=
+##          -DEUREKA_SERVER=http://techefx-eureka-namng-service:8761/eureka
+##          -DZIPKIN_SERVER=http://zipkin:9411/
+##      ports:
+##        - "8700:8700"
+##      #   links:
+##      #     - zipkin
+##      depends_on:
+##        - techefx-product-stock-service
+##      #     - zipkin
+##      networks:
+##        - test-network
+#
+#
+#  blogsite-api-gateway:
+#    image: blogsite-api-gateway
+#    build:
+#      context: ../../../ # Adjust this path to where your root project directory is
+#      dockerfile: Dockerfile
+#    environment:
+#      - JAVA_OPTS=
+#        -DEUREKA_SERVER=http://blogsite-service-registry:8081/eureka
+#        -DZIPKIN_SERVER=http://zipkin:9411/
+#        #- EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8081/eureka/
+#    #       -DENQUIRY_SERVICE=http://techefx-product-enquiry-service:9700/
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - blogsite-service-registry
+#    #      - techefx-eureka-namng-service
+#    #      - techefx-product-enquiry-service
+#    #      - techefx-product-stock-service
+#    #      - zipkin
+#    networks:
+#      - data-emission-network
+#
+#
+#  #  prometheus:
+#  #    image: prom/prometheus
+#  #    volumes:
+#  #      - ./config/:/etc/prometheus
+#  #      - ./data/prometheus:/data
+#  #    command:
+#  #      - '--config.file=/etc/prometheus/prometheus.yml'
+#  #      - '--storage.tsdb.path=/prometheus'
+#  #      - '--storage.tsdb.retention=31d'
+#  #      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+#  #      - '--web.console.templates=/usr/share/prometheus/consoles'
+#  #    ports:
+#  #      - "9090:9090"
+#  #    depends_on:
+#  #      - techefx-product-stock-service
+#  #    networks:
+#  #      - test-network
+#
+#
+#  #  grafana:
+#  #    image: grafana/grafana
+#  #    ports:
+#  #      - "3000:3000"
+#  #    depends_on:
+#  #      - prometheus
+#  #    networks:
+#  #      - test-network
+#
+#
+#  zipkin:
+#    image: openzipkin/zipkin
+#    environment:
+#      - STORAGE_TYPE=mem
+#    ports:
+#      - "9411:9411"
+#    depends_on:
+#      - blogsite-service-registry
+#    networks:
+#      - data-emission-network
+#
+#
+#networks:
+#  data-emission-network:
+#    driver: bridge
+#
+#

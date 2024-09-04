@@ -1,5 +1,8 @@
 package com.blogs.blogsiteapigateway.config;
 
+import com.blogs.blogsiteapigateway.BlogsiteApiGatewayApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
@@ -13,9 +16,7 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 @Configuration
 public class GatewayCorsConfig  implements WebFluxConfigurer {
-
-
-
+    private static final Logger logger = LoggerFactory.getLogger(BlogsiteApiGatewayApplication.class);
     private static final String ALLOWED_HEADERS = "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN";
     private static final String ALLOWED_METHODS = "GET, PUT, POST, DELETE, OPTIONS";
     private static final String ALLOWED_ORIGIN = "http://localhost:5173";
